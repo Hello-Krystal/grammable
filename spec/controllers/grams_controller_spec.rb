@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
+  # ------------------------------------- DESTROY -------------------------------------
+
+
   describe "grams#destroy action" do
     it "shouldn't allow users who didn't create the gram to destroy it" do
       gram = FactoryBot.create(:gram)
@@ -9,7 +12,7 @@ RSpec.describe GramsController, type: :controller do
       delete :destroy, params: { id: gram.id }
       expect(response).to have_http_status(:forbidden)
     end
-    
+
     it "shouldn't let unauthenticated users destroy a gram" do
       gram = FactoryBot.create(:gram)
       delete :destroy, params: { id: gram.id }
@@ -18,6 +21,7 @@ RSpec.describe GramsController, type: :controller do
 
     it "should allow a user to destroy grams" do
       gram = FactoryBot.create(:gram)
+      sign_in gram.user
       delete :destroy, params: { id: gram.id }
       expect(response).to redirect_to root_path
       gram = Gram.find_by_id(gram.id)
@@ -30,6 +34,10 @@ RSpec.describe GramsController, type: :controller do
       delete :destroy, params: { id: 'SPACEDUCK' }
       expect(response).to have_http_status(:not_found)
     end
+  end
+
+  # ------------------------------------- UPDATE -------------------------------------
+
 
   describe "grams#update action" do
     it "shouldn't let users who didn't create the gram update it" do
@@ -75,6 +83,9 @@ RSpec.describe GramsController, type: :controller do
     end
   end
 
+  # ------------------------------------- EDIT -------------------------------------
+
+
   describe "grams#edit action" do
     it "shouldn't let a user who did not create the gram edit a gram" do
       gram = FactoryBot.create(:gram)
@@ -107,6 +118,9 @@ RSpec.describe GramsController, type: :controller do
     end
   end
 
+  # ------------------------------------- SHOW -------------------------------------
+
+
   describe "grams#show action" do
     it "should successfully show the page if the gram is found" do
       gram = FactoryBot.create(:gram)
@@ -120,12 +134,17 @@ RSpec.describe GramsController, type: :controller do
     end
   end
 
+  # ------------------------------------- INDEX -------------------------------------
+
+
   describe "grams#index action" do
     it "should successfully show the page" do
       get :index
       expect(response).to have_http_status(:success)
     end
   end
+
+  # ------------------------------------- NEW -------------------------------------
 
 
   describe "grams#new action" do
@@ -143,6 +162,9 @@ RSpec.describe GramsController, type: :controller do
     end
   end
 
+  # ------------------------------------- CREATE -------------------------------------
+
+
   describe "grams#create action" do
     it "should require users to be logged in" do
       post :create, params: { gram: { message: "Hello" } }
@@ -153,13 +175,19 @@ RSpec.describe GramsController, type: :controller do
       user = FactoryBot.create(:user)
       sign_in user
 
-      post :create, params: { gram: { message: 'Hello!' } }
+      post :create, params: {
+        gram: {
+            message: 'Hello!',
+            picture: fixture_file_upload("/picture.png", 'image/png')
+        }
+      }
+
       expect(response).to redirect_to root_path
 
       gram = Gram.last
       expect(gram.message).to eq("Hello!")
       expect(gram.user).to eq(user)
-    end
+  end
 
     it "should properly deal with validation errors" do
       user = FactoryBot.create(:user)
@@ -170,6 +198,5 @@ RSpec.describe GramsController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(gram_count).to eq Gram.count
     end
-
   end
 end
