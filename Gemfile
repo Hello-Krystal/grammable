@@ -76,5 +76,7 @@ source 'https://rails-assets.org' do
 end
 
 gem 'simple_form'
-
+gem 'carrierwave', '~> 2.0'
+gem "figaro"
+gem 'fog-aws'
 
