@@ -1,4 +1,7 @@
 @import "bootstrap";
+@import "font-awesome";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
     background-color: #fafafa;
@@ -76,9 +79,26 @@ body {
 
 .handle {
     margin: 10px;
-    color: #125688;
-    font-weight: bold;
+    color: #000;
     font-size: 18px;
+    display: inline;
+}
+
+.handle-bold {
+    font-weight: 700;
+    display: inline;
+}
+
+.handle-header {
+    font-weight: 700;
+}
+
+.img-fluid {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input {

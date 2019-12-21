@@ -83,6 +83,8 @@ gem 'simple_form'
 gem 'carrierwave', '~> 2.0'
 gem "figaro"
 gem 'fog-aws'
+gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.11.2'
 
 
 

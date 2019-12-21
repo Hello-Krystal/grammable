@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
@@ -45,6 +45,45 @@
     <% end %>
 
     <%= yield %>
+
+    <hr>
+    <br class="clear-fix" />
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-3">
+                    <b>About</b>
+                    <p>Grammable is clone of <a href="instagram.com">instagram</a> built using RSpec, a test-driven development framework in Ruby. <br><br> It was created by <a href="krystalraysor.com">Krystal Raysor</a>, student at Columbia University Coding Bootcamp. <br> - Dec 2019</p>
+                </div>
+                <div class="col-12 col-sm-3">
+                    <b>Contact</b>
+                    <br />
+                    admin@krystalraysor.com
+                    <br />
+                    Charlotte Metro Area
+                    <br />
+                    Charlotte, NC
+                </div>
+                <div class="col-12 col-sm-3">
+                    <b>App Technologies</b>
+                    <ul>
+                        <li>HMTL</li>
+                        <li>CSS</li>
+                        <li>Ruby</li>
+                        <li>RSpec</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-3">
+                    <b>GIT Repository</b>
+                    <br />
+                    <br />
+                    <%= link_to 'https://github.com/Hello-Krystal/grammable' do %>
+                    <span class="fa fa-github-alt fa-5x social-button"></span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
