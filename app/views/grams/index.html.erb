@@ -10,10 +10,13 @@
         </p>
     </div>
 </div>
+
 <div class="gram-actions float-right">
     <% if current_user && current_user == gram.user %>
-    <%= link_to 'Edit', edit_gram_path(gram) %>
-    <%= link_to 'Destroy', gram_path(gram), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <button type="button" class="btn btn-primary">
+        <%= link_to 'Edit', edit_gram_path(gram) %></button>
+    <button type="button" class="btn btn-danger">
+        <%= link_to 'Destroy', gram_path(gram), method: :delete, data: {confirm: 'Are you sure?'} %></button>
 
     <% end %>
 </div>
@@ -29,6 +32,9 @@
         <%= comment.message %>
     </div>
     <% end %>
+
+    <br>
+    <br>
     <h4>Add a comment</h4>
     <%= simple_form_for Comment.new, url: gram_comments_path(gram) do |f| %>
     <%= f.input :message %>
