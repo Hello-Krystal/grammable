@@ -4,8 +4,14 @@
 @import "font-awesome";
 
 body {
-    background-color: #fafafa;
+    /*background-color: #fafafa;*/
+    background-color: rgba(var(--b3f, 250, 250, 250), 1);
     font-family: 'Lato', sans-serif;
+}
+
+.btn {
+    padding-top: 5px;
+    padding-right: 2px;
 }
 
 .brand {
@@ -20,7 +26,7 @@ body {
 
 .card {
     background-color: #fff;
-    border-radius: .25px;
+    border-radius: .25rem;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
     border: 1px solid #e8e8e8;
     margin-top: 40px;
@@ -28,13 +34,13 @@ body {
 }
 
 .card.form {
-    padding: 20px;
+    padding: 5%;
 }
 
 .card p,
 .card .message {
     font-size: 18px;
-    margin: 20px;
+    /*margin: 20px;*/
 }
 
 .comment {
@@ -91,10 +97,21 @@ body {
 
 .handle-header {
     font-weight: 700;
+    margin-left: 5%;
+}
+
+.image-btns {
+    float: right;
+    margin-right: 50px;
+}
+
+.image-container {
+    background-color: #000;
 }
 
 .img-fluid {
     width: 450px;
+    height: 250px;
     height: auto;
     display: block;
     margin-left: auto;
@@ -152,4 +169,9 @@ label {
     color: #125688;
     font-size: 16px;
     padding-left: 8px;
+}
+
+.user-handle {
+    text-align: center;
+    margin-top: 20px;
 }

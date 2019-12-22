@@ -1,22 +1,16 @@
 <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
     <% @grams.each do |gram| %>
-    <div class="card card-container">
+
+    <div class="card">
         <br class="clear-fix" />
         <p class='fa fa-user fa-4x handle-header'>
             <%= gram.user.email %>
         </p>
-        <%= image_tag gram.picture.url, class: 'img-fluid' %>
-        <br class="clear-fix" />
-        <div class="handle">
-            <p class='handle-bold'>
-                <%= gram.user.email %>
-            </p>
-            <p class="handle">
-                <%= gram.message %>
-            </p>
 
-            <div class="gram-actions float-right">
-                <% if current_user && current_user == gram.user %>
+        <div class="gram-actions float-right">
+            <%= image_tag gram.picture.url, class: 'img-fluid' %>
+            <% if current_user && current_user == gram.user %>
+            <div class="image-btns">
                 <button type="button" class="btn btn-primary">
                     <%= link_to 'Edit', edit_gram_path(gram) %></button>
                 <button type="button" class="btn btn-danger">
@@ -24,17 +18,28 @@
 
                 <% end %>
             </div>
-            <br class="clear-fix" />
+        </div>
+
+        <div class="handle">
+            <div class="comments">
+                <p class='handle-bold'>
+                    <%= gram.user.email %>
+                </p>
+                <p class="handle">
+                    <%= gram.message %>
+                </p>
+            </div>
+
             <div class="comments">
                 <h3>Comments</h3>
                 <% gram.comments.each do |comment| %>
+
                 <div class="comment">
                     <span class="comment_handle">
                         <p class="handle-bold">
                             <%= comment.user.email %>
                         </p>
                     </span>
-
                     <%= comment.message %>
                 </div>
                 <% end %>
@@ -48,10 +53,9 @@
                 <% end %>
             </div>
         </div>
+        <% end %>
     </div>
-</div>
-</div>
-</div>
-<% end %>
 
+</div>
+</div>
 </div>
