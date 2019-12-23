@@ -1,61 +1,46 @@
 <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
     <% @grams.each do |gram| %>
-
     <div class="card">
-        <br class="clear-fix" />
-        <p class='fa fa-user fa-4x handle-header'>
-            <%= gram.user.email %>
-        </p>
+        <div class="handle">
+            <strong class="fa fa-user-circle fa-1x text">
+                <%= gram.user.email %></strong>
+        </div>
+        <%= image_tag gram.picture.url, class: 'img-fluid' %>
 
-        <div class="gram-actions float-right">
-            <%= image_tag gram.picture.url, class: 'img-fluid' %>
-            <% if current_user && current_user == gram.user %>
-            <div class="image-btns">
+        <div class="image-btns">
+            <div class="gram-actions float-right">
+                <% if current_user && current_user == gram.user %>
                 <button type="button" class="btn btn-primary">
                     <%= link_to 'Edit', edit_gram_path(gram) %></button>
                 <button type="button" class="btn btn-danger">
                     <%= link_to 'Destroy', gram_path(gram), method: :delete, data: {confirm: 'Are you sure?'} %></button>
-
                 <% end %>
             </div>
         </div>
+        <p class="text"><strong>
+                <%= gram.user.email %>
+            </strong>
+            <%= gram.message %>
+        </p>
 
-        <div class="handle">
-            <div class="comments">
-                <p class='handle-bold'>
-                    <%= gram.user.email %>
-                </p>
-                <p class="handle">
-                    <%= gram.message %>
-                </p>
+        <div class="comments">
+            <h3>Comments</h3>
+            <% gram.comments.each do |comment| %>
+            <div class="comment">
+                <span class="comment_handle">
+                    <%= comment.user.email %>
+                </span>
+
+                <%= comment.message %>
             </div>
-
-            <div class="comments">
-                <h3>Comments</h3>
-                <% gram.comments.each do |comment| %>
-
-                <div class="comment">
-                    <span class="comment_handle">
-                        <p class="handle-bold">
-                            <%= comment.user.email %>
-                        </p>
-                    </span>
-                    <%= comment.message %>
-                </div>
-                <% end %>
-
-                <br>
-                <br>
-                <h4>Add a comment</h4>
-                <%= simple_form_for Comment.new, url: gram_comments_path(gram) do |f| %>
-                <%= f.input :message %>
-                <%= f.submit 'Add Comment', class: 'my-btn' %>
-                <% end %>
-            </div>
+            <% end %>
+            <br class="clear-fix">
+            <h4>Add a comment</h4>
+            <%= simple_form_for Comment.new, url: gram_comments_path(gram) do |f| %>
+            <%= f.input :message, class: 'message' %>
+            <%= f.submit 'Add Comment', class: 'my-btn' %>
+            <% end %>
         </div>
-        <% end %>
     </div>
-
-</div>
-</div>
+    <% end %>
 </div>
